@@ -1,0 +1,26 @@
+# Archivos específicos de NetBeans
+nb-configuration.xml
+nbproject/private/
+build/
+dist/
+
+# Carpeta target de Maven
+target/
+
+# Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de IDEs
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# Otros archivos generados
+*.class
+*.war
+*.ear

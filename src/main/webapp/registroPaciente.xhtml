@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+    <h:head>
+    <title>Registro de Paciente</title>
+</h:head>
+
+    
+<h:body>
+    <h:form>
+        <p:panel header="Registrar nuevo paciente">
+
+                        <p:outputLabel for="nombre" value="Nombre:" />
+            <p:inputText id="nombre" value="#{pacienteBean.paciente.nombre}" required="true" />
+
+            <p:outputLabel for="dpi" value="DPI:" />
+            <p:inputText id="dpi" value="#{pacienteBean.paciente.dpi}" required="true" maxlength="13" label="DPI">
+                <f:validator validatorId="dpiValidator" />
+                <f:validator validatorId="dpiUnicoValidator" />
+            </p:inputText>
+            <p:message for="dpi" />
+
+            <p:outputLabel for="telefono" value="Teléfono:" />
+            <p:inputText id="telefono"
+                         value="#{pacienteBean.paciente.telefono}"
+                         required="true"
+                         maxlength="10"
+                         label="Teléfono">
+                <f:validator validatorId="telefonoValidator" />
+            </p:inputText>
+            <p:message for="telefono" />
+            
+            
+
+            <p:outputLabel for="correo" value="Correo:" />
+            <p:inputText id="correo"
+                         value="#{pacienteBean.paciente.correo}"
+                         required="true"
+                         label="Correo"
+                         maxlength="50">
+                <f:validator validatorId="correoValidator" />
+            </p:inputText>
+            <p:message for="correo" />
+
+
+
+                        <p:commandButton value="Guardar"
+                             action="#{pacienteBean.guardar}"
+                             update="@form" />
+
+                                </p:panel>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Lista de Pacientes</title>
+</h:head>
+<h:body>
+    <h:form id="formPaciente">
+        
+        <p:messages id="mensajes" showDetail="true" closable="true" />
+
+
+        <p:panel header="Pacientes Registrados">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+    <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+</p:confirmDialog>
+
+            <p:dataTable value="#{pacienteBean.pacientes}"
+             var="p"
+             paginator="true"
+             rows="5"
+             filterBy="#{p.nombre}" 
+             widgetVar="tablaPacientes"
+             filteredValue="#{pacienteBean.pacientesFiltrados}">
+
+
+             <p:column headerText="DPI" filterBy="#{p.dpi}" filterMatchMode="contains">
+                 <h:outputText value="#{p.dpi}" />
+             </p:column>
+
+             <p:column headerText="Nombre" filterBy="#{p.nombre}" filterMatchMode="contains">
+                 <h:outputText value="#{p.nombre}" />
+             </p:column>
+
+             <p:column headerText="Teléfono" >
+                 <h:outputText value="#{p.telefono}" />
+             </p:column>
+
+             <p:column headerText="Correo" >
+                 <h:outputText value="#{p.correo}" />
+             </p:column>
+
+
+                <p:column headerText="Acciones">
+                                <p:commandButton value="Editar" icon="pi pi-pencil"
+                             action="#{pacienteBean.editar(p)}"
+                             update=":formPaciente"
+                             immediate="true"
+                             />
+                             
+                                <p:commandButton value="Eliminar"
+                 icon="pi pi-trash"
+                 action="#{pacienteBean.eliminar(p)}"
+                 update="@form"
+                 styleClass="ui-button-danger"
+                 process="@this">
+    <p:confirm header="Confirmación"
+               message="¿Estás seguro de eliminar al paciente?"
+               icon="pi pi-exclamation-triangle" />
+</p:commandButton>
+
+
+                </p:column>
+
+            </p:dataTable>
+
+            <p:commandButton value="Agregar nuevo paciente"
+                 action="#{pacienteBean.nuevo}"
+                 icon="pi pi-plus"
+                 update="@form" />
+
+
+        </p:panel>
+
+    </h:form>
+</h:body>
+</html>
