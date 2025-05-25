@@ -24,3 +24,6 @@ Thumbs.db
 *.class
 *.war
 *.ear
+
+# VS Code
+.vscode/

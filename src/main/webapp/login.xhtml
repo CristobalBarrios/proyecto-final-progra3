@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Iniciar Sesión" style="width: 350px; margin: 100px auto 0px;">
+            <div class="card">
+                <div class="field grid">
+                    <p:outputLabel for="username" styleClass="col-fixed" style="width:110px" value="Usuario:" />
+                    <div class="col">
+                        <p:inputText id="username" value="#{loginBean.username}" required="true"
+                        requiredMessage="Por favor ingrese su usuario." placeholder="Usuario" />
+                    </div>
+                    <div class="flex justify-content-center" style="width:100%; padding-top:5px">
+                        <p:message for="username" />
+                    </div>
+                </div>
+                <div class="field grid">
+                    <p:outputLabel for="password" styleClass="col-fixed" style="width:110px" value="Contraseña:" />
+                    <div class="col">
+                        <p:password id="password" value="#{loginBean.password}" required="true" placeholder="Contraseña"
+                        requiredMessage="Por favor ingrese su contraseña." />
+                    </div>
+                    <div class="flex justify-content-center" style="width:100%; padding-top:5px">
+                        <p:message for="password"/>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="flex justify-content-center" style="width:100%">
+                        <p:commandButton value="Entrar" action="#{loginBean.login}" update="@form" ajax="false" />
+                    </div>
+                </div>
+            </div>
+        </p:panel>
+        
+        <div class="card">
+        </div>
+        <p:messages id="globalMessages" globalOnly="true" showDetail="true" closable="true" style="width:700px; margin:20px auto;" />
+    </h:form>
+</h:body>
+
+</html>
