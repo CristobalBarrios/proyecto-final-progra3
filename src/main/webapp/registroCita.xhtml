@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Registrar Cita</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Registrar nueva cita">
+            <p:messages id="messages" autoUpdate="true" closable="true" globalOnly="true" />
+            <p:outputLabel for="paciente" value="Paciente:" />
+            <p:selectOneMenu id="paciente" value="#{citaBean.cita.paciente}" required="true" converter="com.clinica.converter.PacienteConverter">
+                <f:selectItems value="#{citaBean.pacientes}" var="p" itemValue="#{p}" itemLabel="#{p.nombre} (#{p.idPaciente})" />
+            </p:selectOneMenu>
+            
+            <p:outputLabel for="doctor" value="Doctor:" />
+            <p:selectOneMenu id="doctor" value="#{citaBean.cita.doctor}" required="true" converter="com.clinica.converter.DoctorConverter">
+                <f:selectItems value="#{citaBean.doctores}" var="p" itemValue="#{p}" itemLabel="#{p.nombre} (#{p.idDoctor})" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="fechaHora" value="Fecha y Hora:" />
+            <p:calendar id="fechaHora" value="#{citaBean.cita.fechaHora}" pattern="yyyy-MM-dd HH:mm" showTime="true" required="true" />
+
+            <p:outputLabel for="motivo" value="Motivo:" />
+            <p:inputText id="motivo" value="#{citaBean.cita.motivo}" maxlength="255" />
+
+            <p:commandButton value="Guardar" action="#{citaBean.guardar}" update="@form" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

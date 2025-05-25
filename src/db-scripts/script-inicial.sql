@@ -41,3 +41,14 @@ CREATE TABLE IF NOT EXISTS doctores (
 INSERT INTO doctores (nombre, especialidad, telefono, correo) VALUES
   ('Dr. Juan Pérez', 'Cardiología', '5551234567', 'juan.perez@clinica.com'),
   ('Dra. Ana López', 'Pediatría', '5559876543', 'ana.lopez@clinica.com');
+
+-- Agrega la tabla de citas para agendar citas entre pacientes y doctores
+CREATE TABLE IF NOT EXISTS citas (
+  idCita BIGINT AUTO_INCREMENT PRIMARY KEY,
+  idPaciente INT NOT NULL,
+  idDoctor INT NOT NULL,
+  fechaHora DATETIME NOT NULL,
+  motivo VARCHAR(255),
+  FOREIGN KEY (idPaciente) REFERENCES pacientes(idPaciente),
+  FOREIGN KEY (idDoctor) REFERENCES doctores(idDoctor)
+);

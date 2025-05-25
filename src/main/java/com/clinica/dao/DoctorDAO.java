@@ -1,32 +1,34 @@
 package com.clinica.dao;
 
 import java.util.List;
+import com.clinica.model.Doctor;
 import com.clinica.model.Paciente;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class PacienteDAO {
+public class DoctorDAO {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinicaPU");
 
-    public void guardar(Paciente paciente) {
+    public void guardar(Doctor doctor) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.persist(paciente); // guarda el paciente en la BD
+            em.persist(doctor); // Guarda el Doctor en la BD
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            System.out.println("Error al guardar paciente: " + e.getMessage());
+            System.out.println("Error al guardar Doctor: " + e.getMessage());
         } finally {
             em.close();
         }
     }
 
-    public List<Paciente> listarTodos() {
+    public List<Doctor> listarTodos() {
         EntityManager em = emf.createEntityManager();
-        List<Paciente> lista = em.createQuery("SELECT p FROM Paciente p", Paciente.class).getResultList();
+        List<Doctor> lista = em.createQuery("SELECT p FROM Doctor p", Doctor.class).getResultList();
         em.close();
         return lista;
 
@@ -35,7 +37,7 @@ public class PacienteDAO {
     public boolean existe(String dpi) {
         EntityManager em = emf.createEntityManager();
         try {
-            Long count = em.createQuery("SELECT COUNT(p) FROM Paciente p WHERE p.dpi = :dpi", Long.class)
+            Long count = em.createQuery("SELECT COUNT(p) FROM Doctor p WHERE p.dpi = :dpi", Long.class)
                 .setParameter("dpi", dpi)
                 .getSingleResult();
             return count > 0;
@@ -44,15 +46,15 @@ public class PacienteDAO {
         }
     }
 
-    public void actualizar(Paciente paciente) {
+    public void actualizar(Doctor doctor) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.merge(paciente); // actualiza
+            em.merge(doctor); // actualiza
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            System.out.println("Error al actualizar paciente: " + e.getMessage());
+            System.out.println("Error al actualizar Doctor: " + e.getMessage());
         } finally {
             em.close();
         }
@@ -61,10 +63,10 @@ public class PacienteDAO {
     public void eliminar(String dpi) {
         EntityManager em = emf.createEntityManager();
         try {
-            Paciente paciente = em.find(Paciente.class, dpi);
-            if (paciente != null) {
+            Doctor doctor = em.find(Doctor.class, dpi);
+            if (doctor != null) {
                 em.getTransaction().begin();
-                em.remove(paciente);
+                em.remove(doctor);
                 em.getTransaction().commit();
             }
         } catch (Exception e) {
@@ -75,10 +77,10 @@ public class PacienteDAO {
         }
     }
 
-    public Paciente buscarPorId(int id) {
+    public Doctor buscarPorId(int id) {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.find(Paciente.class, id);
+            return em.find(Doctor.class, id);
         } finally {
             em.close();
         }

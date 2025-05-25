@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Lista de Citas</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Citas Agendadas">
+            <p:dataTable value="#{citaBean.citas}" var="c" paginator="true" rows="6">
+                <p:column headerText="ID Paciente">
+                    <h:outputText value="#{c.paciente.idPaciente}" />
+                </p:column>
+                <p:column headerText="Paciente">
+                    <h:outputText value="#{c.paciente.nombre}" />
+                </p:column>
+                <p:column headerText="ID Doctor">
+                    <h:outputText value="#{c.doctor.idDoctor}" />
+                </p:column>
+                <p:column headerText="Doctor">
+                    <h:outputText value="#{c.doctor.nombre}" />
+                </p:column>
+                <p:column headerText="Fecha y Hora">
+                    <h:outputText value="#{c.fechaHora}" />
+                </p:column>
+                <p:column headerText="Motivo">
+                    <h:outputText value="#{c.motivo}" />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Agregar nueva cita" action="#{citaBean.nueva}" icon="pi pi-plus" update="@form" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

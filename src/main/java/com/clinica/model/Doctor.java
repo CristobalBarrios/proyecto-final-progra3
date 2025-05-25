@@ -8,18 +8,18 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pacientes")
-public class Paciente {
+@Table(name = "doctores")
+public class Doctor {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPaciente;
-    
-    @Column(nullable = false)
-    private String dpi;
+    private int idDoctor;
     
     @Column(nullable = false)
     private String nombre;
+    
+    @Column(nullable = false)
+    private String especialidad;
     
     
     private String telefono;
@@ -34,11 +34,11 @@ public class Paciente {
     }
 
     public String getDpi() {
-        return dpi;
+        return especialidad;
     }
 
-    public void setDpi(String dpi) {
-        this.dpi = dpi;
+    public void setDpi(String especialidad) {
+        this.especialidad = especialidad;
     }
 
     public String getTelefono() {
@@ -57,21 +57,21 @@ public class Paciente {
         this.correo = correo;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public int getIdDoctor() {
+        return idDoctor;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Paciente paciente = (Paciente) o;
-        return idPaciente == paciente.idPaciente;
+        Doctor doctor = (Doctor) o;
+        return idDoctor == doctor.idDoctor;
     }
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(idPaciente);
+        return Integer.hashCode(idDoctor);
     }
     
     
