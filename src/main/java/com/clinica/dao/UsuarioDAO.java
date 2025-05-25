@@ -20,8 +20,10 @@ public class UsuarioDAO {
     public boolean validarLogin(String username, String password) {
         EntityManager em = emf.createEntityManager();
         try {
-            Usuario usuario = em.find(Usuario.class, username);
-            return usuario != null && usuario.getPassword().equals(password);
+            return em.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.username = :username AND u.password = :password", Long.class)
+                .setParameter("username", username)
+                .setParameter("password", password)
+                .getSingleResult() > 0;
         } finally {
             em.close();
         }

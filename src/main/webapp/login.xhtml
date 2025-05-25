@@ -6,13 +6,13 @@
 </h:head>
 <h:body>
     <h:form>
-        <p:panel header="Iniciar Sesión" style="width: 350px; margin: 100px auto 0px;">
+        <p:panel header="Iniciar Sesión" style="width: 380px; margin: 100px auto 0px;">
             <div class="card">
                 <div class="field grid">
                     <p:outputLabel for="username" styleClass="col-fixed" style="width:110px" value="Usuario:" />
                     <div class="col">
                         <p:inputText id="username" value="#{loginBean.username}" required="true"
-                        requiredMessage="Por favor ingrese su usuario." placeholder="Usuario" />
+                        requiredMessage="Por favor ingrese su usuario." placeholder="Usuario" style="width: 225px;" />
                     </div>
                     <div class="flex justify-content-center" style="width:100%; padding-top:5px">
                         <p:message for="username" />
@@ -22,7 +22,7 @@
                     <p:outputLabel for="password" styleClass="col-fixed" style="width:110px" value="Contraseña:" />
                     <div class="col">
                         <p:password id="password" value="#{loginBean.password}" required="true" placeholder="Contraseña"
-                        requiredMessage="Por favor ingrese su contraseña." />
+                        requiredMessage="Por favor ingrese su contraseña." toggleMask="true" style="width: 225px;" />
                     </div>
                     <div class="flex justify-content-center" style="width:100%; padding-top:5px">
                         <p:message for="password"/>
